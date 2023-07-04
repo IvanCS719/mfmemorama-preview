@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
 import MemoTablero from './MemoTablero';
-import sonidoParEncontrado from '../../assets/sounds/successAudio.mp3'
+import sonidoParEncontrado from '../../assets/sounds/successAudio.mp3';
+import sonidoGirarTarjeta from '../../assets/sounds/flipCard.mp3';
 
 //Arreglo local con contenido de prueba para cada tarjeta
 const contenidoList = [...'🐒🦜🐓🥭🍅🥑🌞🌜'];
 const successAudio = new Audio(sonidoParEncontrado);
+const girarTarjetaAudio = new Audio(sonidoGirarTarjeta);
 
 function MemoLogica() {
   //constante para almacenar el contenido del memorama mezclado
@@ -36,7 +38,13 @@ function MemoLogica() {
     const mezclarContenidoList = mezclarArray([...contenidoList, ...contenidoList]);
     //Se setea la constante barajearTarjetas con un arreglo de objetos, que contienen el indice, el continido, y el estado de que no esta girada
     setBarajearTarjetas(mezclarContenidoList.map((contenido, indice) => ({ index: indice, contenido, tarjetaGirada: false })))
+  
+    setAnimacion(true);
+      setTimeout(() => {
+        setAnimacion(false);
+      }, 5000);
   }, []);
+
 
   //función que se llama al hacer click en alguna tarjeta y recibe un objeto (con los datos de la tarjeta)
   const handleMemoClick = memoTarjeta => {
@@ -48,6 +56,9 @@ function MemoLogica() {
     barajearTarjetasCopia.splice(memoTarjeta.index, 1, memoTarjetaGirada);
     //se setea barajearTarjetas con el memorama modificado
     setBarajearTarjetas(barajearTarjetasCopia);
+    girarTarjetaAudio.volume = 0.6;
+    girarTarjetaAudio.currentTime = 0;
+    girarTarjetaAudio.play();
 
     //Se condiciona si no hay una tarjeta seleccionada, entonces se setea tarjetaSeleccionada
     if (tarjetaSeleccionada === null) {
@@ -59,6 +70,7 @@ function MemoLogica() {
       setTarjetaSeleccionada(null);
       setTarjetasEncontradas((tarjetasEncontradas) => tarjetasEncontradas + 1);
       //successAudio.ended();
+      girarTarjetaAudio.volume = 0.0;
       successAudio.volume = 0.5;
       successAudio.currentTime = 0;
       successAudio.play();
@@ -85,7 +97,6 @@ function MemoLogica() {
   if (tarjetasEncontradas === contenidoList.length) {
     console.log("Ganaste");
   }
-  console.log(barajearTarjetas)
 
   return (
     //Se pasan la props a tablero
