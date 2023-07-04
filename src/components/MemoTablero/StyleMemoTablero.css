@@ -1,7 +1,30 @@
+.ganasteText{
+    font-size: 2rem;
+    font-weight: 600;
+    color: rgb(50, 158, 0);
+    line-height: 0;
+    text-align: center;
+}
+.titleText{
+    font-size: 2rem;
+    font-weight: 600;
+    color: #060a2b;
+    margin-top: 15px;
+    margin-bottom: 25px;
+    text-align: center;
+}
 .memoTablero{
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 10px;
     max-width: 720px;
-    margin: 100px auto;
+    margin: 40px auto;
 }
+
+@media (max-width: 1024px) { 
+
+    .titleText, .ganasteText{
+        font-size: 2.8rem;
+ 
+    }
+ }
