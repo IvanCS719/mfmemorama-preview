@@ -29,12 +29,20 @@
     background-color: #ffffff;
     transform: rotateY(180deg);
     box-shadow: 5px 5px 10px 0px rgb(0 0 0 / 50%);
-    font-size: 78px;
+    width: 100%;
+    height: 100%;
+  
+    background-size: cover;
+    background-position: center;
     
 }
 
 .memo-tarjeta-front{
-    background-color: #060a2b;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    box-shadow: 1px 1px 4px 0px rgb(0 0 0 / 50%);
 
 }
 .memo-tarjeta-front-logo{

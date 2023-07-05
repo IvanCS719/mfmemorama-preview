@@ -6,8 +6,8 @@ function MemoTablero({ contenidoBarajeado, animacion, handleMemoClick, gano }) {
 
     return (
         <main className='mainContainerTablero'>
-          <p className='titleText'>Hermosos Recuerdos de Pasada Glorias</p>
-          <p className='ganasteText'>{gano ? '¡Bien Hecho!': '-'}</p>
+          <h1 className='titleText'>CHOCOMEMO</h1>
+          <p className='ganasteText'>{gano ? '¡No Puej!': '-'}</p>
         <div className='memoTablero'>
           
             {

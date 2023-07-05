@@ -6,7 +6,9 @@ import sonidoGanaste from '../../assets/sounds/win.mp3';
 
 
 //Arreglo local con contenido de prueba para cada tarjeta
-const contenidoList = [...'🐒🦜🐓🥭🍅🥑🌞🌜'];
+const contenidoList = ['choco_1.jpg', 'choco_2.jpg', 'choco_3.jpg','choco_4.jpg', 'choco_5.jpg', 'choco_6.jpg',
+'choco_7.jpg', 'choco_8.jpg', 'choco_9.jpg', 'choco_10.jpg', 'choco_11.jpg', 'choco_12.jpg', 'choco_13.jpg', 'gato.jpg',
+'perro.jpg'];
 const successAudio = new Audio(sonidoParEncontrado);
 const girarTarjetaAudio = new Audio(sonidoGirarTarjeta);
 const ganasteAudio = new Audio(sonidoGanaste);
@@ -98,7 +100,7 @@ function MemoLogica() {
   };
 
   if (tarjetasEncontradas === contenidoList.length) {
-    successAudio.volume = 0.0;
+    //successAudio.volume = 0.0;
       ganasteAudio.volume = 0.8;
       ganasteAudio.play();
       gano = true;
