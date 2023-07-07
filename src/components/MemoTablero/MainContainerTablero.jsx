@@ -7,7 +7,7 @@ import sonidoGanaste from '../../assets/sounds/win.mp3';
 
 //Arreglo local con contenido de prueba para cada tarjeta
 const contenidoList = ['choco_1.jpg', 'choco_2.jpg', 'choco_3.jpg','choco_4.jpg', 'choco_5.jpg', 'choco_6.jpg',
-'choco_7.jpg', 'choco_8.jpg', 'choco_9.jpg', 'choco_10.jpg', 'choco_11.jpg', 'choco_12.jpg', 'choco_13.jpg', 'gato.jpg',
+'choco_7.jpg', 'choco_8.jpg', 'gato.jpg',
 'perro.jpg'];
 const successAudio = new Audio(sonidoParEncontrado);
 const girarTarjetaAudio = new Audio(sonidoGirarTarjeta);
@@ -21,9 +21,12 @@ function MemoLogica() {
   //constante para controlar la animación de ver las dos cartas que el usuario volteó
   const [animacion, setAnimacion] = useState(false);
 
+  const [iniciaText, setIniciarText] = useState(true);
+
   const [tarjetasEncontradas, setTarjetasEncontradas] = useState(0);
+  let gano = false;
   
-  let gano = false
+  
 
   /*función que recibe un arreglo del contenido del memorama duplicado 
   y retorna el mismo arreglo con los elemento mezclados*/
@@ -46,10 +49,14 @@ function MemoLogica() {
     //Se setea la constante barajearTarjetas con un arreglo de objetos, que contienen el indice, el continido, y el estado de que no esta girada
     setBarajearTarjetas(mezclarContenidoList.map((contenido, indice) => ({ index: indice, contenido, tarjetaGirada: false })))
   
+    setTimeout(()=>{
+      setIniciarText(false);
+    }, 5000);
+
     setAnimacion(true);
       setTimeout(() => {
         setAnimacion(false);
-      }, 5000);
+      }, 8000);
   }, []);
 
 
@@ -99,17 +106,18 @@ function MemoLogica() {
 
   };
 
-  if (tarjetasEncontradas === contenidoList.length) {
-    //successAudio.volume = 0.0;
+
+    if (tarjetasEncontradas === contenidoList.length) {
       ganasteAudio.volume = 0.8;
       ganasteAudio.play();
       gano = true;
 
-  }
+    }
 
   return (
     //Se pasan la props a tablero
-    <MemoTablero contenidoBarajeado={barajearTarjetas} animacion={animacion} handleMemoClick={handleMemoClick} gano={gano}/>
+    <MemoTablero contenidoBarajeado={barajearTarjetas} animacion={animacion} handleMemoClick={handleMemoClick} gano={gano}
+    iniciaText={iniciaText}/>
   );
 }
 
